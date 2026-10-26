@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trắc nghiệm từ vựng</title>
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            /* Điền tên file ảnh của bạn vào chỗ TEN_ANH_CUA_BAN (ví dụ: bg/bg.jpg hoặc bg.png) */
+            background-image: 
+                url("{{ url_for('static', filename='a3.jpeg') }}"), 
+                url("{{ url_for('static', filename='a4.jpeg') }}");
+            background-size: 300px auto, 300px auto;
+            background-position: left center, right center;
+            background-repeat: no-repeat, no-repeat;
+            background-attachment: fixed, fixed;
+        }
+
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-align: center;
+            width: 420px;
+            z-index: 10;
+        }
+        h2 { color: #2d3436; font-size: 1.2rem; margin-bottom: 15px; }
+        .question-label { font-size: 1.1rem; color: #636e72; margin-bottom: 10px; }
+        .hiragana { font-size: 38px; color: #0984e3; margin: 15px 0; font-weight: bold; }
+        .meaning { font-size: 16px; color: #636e72; margin-bottom: 20px; }
+        .options-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #0984e3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background-color: #74b9ff; }
+        .btn-next {
+            background-color: #00b894;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-next:hover { background-color: #55efc4; }
+        .feedback { font-weight: bold; margin-bottom: 15px; font-size: 16px; }
+        .error { color: #d63031; }
+        .success { color: #00b894; }
+        .back { margin-top: 15px; display: block; color: #b2bec3; text-decoration: none; font-size: 14px; }
+        .back:hover { color: #636e72; }
+    </style>
+</head>
+<body>
+    <!-- Các ảnh trang trí nghiêng chéo xung quanh -->
+    <img src="{{ url_for('static', filename='bg.jpg') }}" class="random-bg-img img-1" alt="bg">
+    <img src="{{ url_for('static', filename='bg.jpg') }}" class="random-bg-img img-2" alt="bg">
+    <img src="{{ url_for('static', filename='bg.jpg') }}" class="random-bg-img img-3" alt="bg">
+    <img src="{{ url_for('static', filename='bg.jpg') }}" class="random-bg-img img-4" alt="bg">
+
+    <div class="card">
+        <h2>Cấp độ: {{ level }} ({{ index }}/{{ total }})</h2>
+        <div class="question-label">Chọn chữ Kanji tương ứng:</div>
+        <div class="hiragana">{{ item.hiragana }}</div>
+        <div class="meaning">Ý nghĩa: <b>{{ item.meaning }}</b></div>
+
+        {% if feedback %}
+        <div class="feedback {% if is_correct %}success{% else %}error{% endif %}">
+            {{ feedback }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            <input type="hidden" name="correct_answer" value="{{ correct_answer }}">
+
+            {% if not is_correct %}
+            <div class="options-container">
+                {% for opt in options %}
+                <button type="submit" name="user_answer" value="{{ opt }}">{{ opt }}</button>
+                {% endfor %}
+            </div>
+            {% else %}
+            <button type="submit" name="action" value="next" class="btn-next">Câu tiếp theo ➔</button>
+            {% endif %}
+        </form>
+
+        <a href="/" class="back">Về trang chủ</a>
+    </div>
+</body>
+</html>

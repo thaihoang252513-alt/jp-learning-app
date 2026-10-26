@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>塩ちゃん可愛い</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            
+            background-image: url("{{ url_for('static', filename='cg.jpeg') }}");
+            background-size: 200px auto;
+            background-position: bottom right;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            color: #d63031;
+        }
+        .level-group {
+            margin-bottom: 25px;
+        }
+        h3 {
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #d63031;
+            display: inline-block;
+            padding-bottom: 4px;
+            color: #2d3436;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #ff4757;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn:hover {
+            background-color: #ff6b81;
+            transform: translateY(-2px);
+        }
+        .btn-quiz {
+            background-color: #2ed573;
+        }
+        .btn-quiz:hover {
+            background-color: #7bed9f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>N2のために頑張りましょう</h1>
+        
+        <div class="level-group">
+            <h3>Cấp độ N5</h3>
+            <div>
+                <a href="/practice/N5/input" class="btn">Luyện Gõ Hiragana</a>
+                <a href="/practice/N5/quiz" class="btn btn-quiz">Trắc Nghiệm</a>
+            </div>
+        </div>
+
+        <div class="level-group">
+            <h3>Cấp độ N4</h3>
+            <div>
+                <a href="/practice/N4/input" class="btn">Luyện Gõ Hiragana</a>
+                <a href="/practice/N4/quiz" class="btn btn-quiz">Trắc Nghiệm</a>
+            </div>
+        </div>
+
+        <div class="level-group">
+            <h3>Cấp độ N3</h3>
+            <div>
+                <a href="/practice/N3/input" class="btn">Luyện Gõ Hiragana</a>
+                <a href="/practice/N3/quiz" class="btn btn-quiz">Trắc Nghiệm</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
